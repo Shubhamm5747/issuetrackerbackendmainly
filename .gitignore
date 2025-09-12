@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+
+# Environment variables
+.env
+
+# Databases
+*.db
+instance/
+
+# macOS junk
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
