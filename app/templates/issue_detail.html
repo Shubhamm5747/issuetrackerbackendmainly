@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-4">
+
+  <!-- Issue Header -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h2 class="card-title fw-bold">{{ issue.title }}</h2>
+      <p class="card-text text-muted">{{ issue.description }}</p>
+
+      <!-- Status & Change Button (same line) -->
+      <div class="d-flex align-items-center gap-2">
+        <span class="fw-semibold">Status:</span>
+        <span class="badge {% if issue.status == 'working' %}
+              bg-success
+          {% elif issue.status == 'open' %}
+              bg-danger
+          {% else %}
+              bg-secondary
+          {% endif %}">{{ issue.status }}</span>
+        <form method="POST" action="{{ url_for('web_issues.toggle_status', issue_id=issue.id) }}" class="d-inline">
+          <button class="btn btn-sm btn-outline-info" type="submit">Change</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comments Section -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h4 class="fw-bold mb-3">Comments</h4>
+      {% if issue.comments %}
+      <ul class="list-group list-group-flush mb-3">
+        {% for comment in issue.comments %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div>
+            <p class="mb-1">{{ comment.content }}
+            <small class="text-muted">by {{ comment.author.username }}</small></p>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="text-muted fst-italic">No comments yet. Be the first to comment!</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Add Comment Form -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form method="POST" action="{{ url_for('web_issues.add_comment', issue_id=issue.id) }}">
+        <div class="mb-3">
+          <textarea name="content" class="form-control" rows="3" placeholder="Write your comment..." required></textarea>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary">Post Comment</button>
+          <a href="{{ url_for('web_issues.dashboard', team_id=issue.team_id) }}" class="btn btn-secondary">
+            Back to Issues
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+

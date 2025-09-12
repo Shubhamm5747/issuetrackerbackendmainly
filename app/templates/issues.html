@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>All Issues</h2>
+<a href="{{ url_for('web_issues.create_issue') }}" class="btn btn-success mb-3">+ New Issue</a>
+<a href= "{{ url_for('web_teams.view_teams')}}" class ="btn btn-primary mb-3">Other teams</a>
+<ul class="list-group">
+  {% for issue in issues %}
+  <li class="list-group-item">
+    <div class="row align-items-center">
+      
+      <!-- Title column (fixed width, wraps text) -->
+      <div class="col-5 text-truncate">
+        <span class="fw-semibold d-block text-wrap">{{ issue.title }}</span><small class="text-muted">raised by {{ issue.author.username }}</small>
+      </div>
+      
+      <!-- Status column (centered, fixed space) -->
+      <div class="col-2 text-center">
+        <span class="badge 
+          {% if issue.status == 'working' %}
+              bg-success
+          {% elif issue.status == 'open' %}
+              bg-danger
+          {% else %}
+              bg-secondary
+          {% endif %}
+          px-3 py-2">
+         {{ issue.status }}
+        </span>
+      </div>
+      
+      <!-- Button column (right aligned) -->
+      <div class="col-5 text-end">
+        <a href="{{ url_for('web_issues.issue_detail', issue_id=issue.id) }}" 
+           class="btn btn-outline-primary btn-sm">
+          View
+        </a>
+      </div>
+      
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

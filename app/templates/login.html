@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-500 mt-3">
+  <div class="card shadow-lg p-4" style="width: 400px;">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Login</h2>
+      <form method="POST">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form>
+      <div class="text-center my-3">
+          <a href="{{ url_for('web_auth.google_login') }}"
+              class="btn btn-light border d-flex align-items-center justify-content-center gap-2 shadow-sm"
+              style="padding: 6px 20px;">
+              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                  alt="Google" width="20" height="20">
+              <span>Sign in with Google</span>
+          </a>
+      </div>
+      <p class="text-center mt-3">Don't have an account? 
+        <a href="{{ url_for('web_auth.register') }}">Register</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

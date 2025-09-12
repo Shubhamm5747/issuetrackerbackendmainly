@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-200">
+  <div class="card shadow p-4" style="width: 400px;">
+    <h3 class="card-title text-center mb-3">Join Team</h3>
+    <form method="POST">
+      <div class="mb-3">
+        <label for="invite_code" class="form-label">Invite Code</label>
+        <input type="text" name="invite_code" id="invite_code" class="form-control" placeholder="Enter invite code" required>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Join Team</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

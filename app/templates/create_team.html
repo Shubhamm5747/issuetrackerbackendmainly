@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-80 mt-5">
+  <div class="card shadow p-4" style="width: 400px;">
+    <h3 class="card-title text-center mb-3">Create Team</h3>
+    <form method="POST">
+      <div class="mb-3">
+        <label for="name" class="form-label">Team Name</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Enter team name" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Create Team</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
